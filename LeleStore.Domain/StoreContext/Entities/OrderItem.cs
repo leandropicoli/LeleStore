@@ -13,6 +13,8 @@ namespace LeleStore.Domain.StoreContext.Entities
 
             if (product.QuantityOnHand < quantity)
                 AddNotification("Quantity", "Product out of stock");
+
+            product.DecreaseQuantity(quantity);
         }
 
         public Product Product { get; private set; }

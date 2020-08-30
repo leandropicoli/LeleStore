@@ -52,17 +52,19 @@ namespace LeleStore.Domain.StoreContext.Entities
         {
             //Max items in a ship is 5
             var deliveries = new List<Delivery>();
-            deliveries.Add(new Delivery(DateTime.Now.AddDays(5)));
-            var count = 1;
+            var count = 0;
 
             foreach (var item in _items)
             {
-                if (count == 5)
+                count++;
+                if (count == 1)
                 {
-                    count = 1;
                     deliveries.Add(new Delivery(DateTime.Now.AddDays(5)));
                 }
-                count++;
+                else if (count == 5)
+                {
+                    count = 0;
+                }
             }
 
             deliveries.ForEach(x => x.Ship());
