@@ -1,8 +1,9 @@
 using LeleStore.Domain.StoreContext.Enums;
+using LeleStore.Shared.Entities;
 
-namespace LeleStore.Domain.StoreContext.ValueObjects
+namespace LeleStore.Domain.StoreContext.Entities
 {
-    public class Address
+    public class Address : Entity
     {
         public Address(string street, string number, string complement, string city, string state, string country, string zipCode, EAddressType type)
         {

@@ -1,9 +1,10 @@
 using System;
 using LeleStore.Domain.StoreContext.Enums;
+using LeleStore.Shared.Entities;
 
 namespace LeleStore.Domain.StoreContext.Entities
 {
-    public class Delivery
+    public class Delivery : Entity
     {
         public Delivery(DateTime estimatedDeliveryDate)
         {

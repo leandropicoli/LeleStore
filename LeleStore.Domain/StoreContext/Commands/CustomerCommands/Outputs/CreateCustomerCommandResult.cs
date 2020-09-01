@@ -9,8 +9,6 @@ namespace LeleStore.Domain.StoreContext.Commands.CustomerCommands.Outputs
         {
         }
 
-
-
         public CreateCustomerCommandResult(Guid id, string name, string email)
         {
             Id = id;

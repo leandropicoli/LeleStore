@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentValidator;
 using LeleStore.Domain.StoreContext.ValueObjects;
+using LeleStore.Shared.Entities;
 
 namespace LeleStore.Domain.StoreContext.Entities
 {
-    public class Customer : Notifiable
+    public class Customer : Entity
     {
         private readonly IList<Address> _addresses;
         public Customer(

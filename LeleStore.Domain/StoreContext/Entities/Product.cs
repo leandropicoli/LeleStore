@@ -1,6 +1,8 @@
+using LeleStore.Shared.Entities;
+
 namespace LeleStore.Domain.StoreContext.Entities
 {
-    public class Product
+    public class Product : Entity
     {
         public Product(
             string title,
