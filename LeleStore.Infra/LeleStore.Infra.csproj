@@ -3,9 +3,10 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="1.50.2"/>
+    <PackageReference Include="Dapper" Version="1.50.2" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LeleStore.Shared\LeleStore.Shared.csproj"/>
+    <ProjectReference Include="..\LeleStore.Shared\LeleStore.Shared.csproj" />
+    <ProjectReference Include="..\LeleStore.Domain\LeleStore.Domain.csproj" />
   </ItemGroup>
 </Project>
