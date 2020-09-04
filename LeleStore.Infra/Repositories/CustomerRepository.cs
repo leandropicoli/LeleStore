@@ -2,6 +2,7 @@ using System.Data;
 using System.Linq;
 using Dapper;
 using LeleStore.Domain.StoreContext.Entities;
+using LeleStore.Domain.StoreContext.Queries;
 using LeleStore.Domain.StoreContext.Repositories;
 using LeleStore.Infra.StoreContext.DataContexts;
 
@@ -33,6 +34,17 @@ namespace LeleStore.Infra.Repositories
                 .Query<bool>(
                     "spCheckEmail",
                     new { Email = email },
+                    commandType: CommandType.StoredProcedure)
+                .FirstOrDefault();
+        }
+
+        public CustomerOrdersCountResult GetCustomerOrdersCount(string document)
+        {
+            return _context
+                .Connection
+                .Query<CustomerOrdersCountResult>(
+                    "spGetCustomerOrdersCount",
+                    new { Document = document },
                     commandType: CommandType.StoredProcedure)
                 .FirstOrDefault();
         }
