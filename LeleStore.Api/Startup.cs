@@ -1,3 +1,8 @@
+using LeleStore.Domain.StoreContext.Repositories;
+using LeleStore.Domain.StoreContext.Services;
+using LeleStore.Infra.Repositories;
+using LeleStore.Infra.StoreContext.DataContexts;
+using LeleStore.Infra.StoreContext.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,6 +18,10 @@ namespace LeleStore.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(option => option.EnableEndpointRouting = false);
+
+            services.AddScoped<LeleDataContext, LeleDataContext>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddTransient<IEmailService, EmailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
