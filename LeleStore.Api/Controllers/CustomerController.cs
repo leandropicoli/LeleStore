@@ -7,6 +7,7 @@ using LeleStore.Domain.StoreContext.Handlers;
 using LeleStore.Domain.StoreContext.Queries;
 using LeleStore.Domain.StoreContext.Repositories;
 using LeleStore.Domain.StoreContext.ValueObjects;
+using LeleStore.Shared.Commands;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LeleStore.Api.Controllers
@@ -45,12 +46,9 @@ namespace LeleStore.Api.Controllers
 
         [HttpPost]
         [Route("v1/customers")]
-        public ActionResult<CreateCustomerCommandResult> Post([FromBody] CreateCustomerCommand command)
+        public ICommandResult Post([FromBody] CreateCustomerCommand command)
         {
-            var result = (CreateCustomerCommandResult)_handler.Handle(command);
-            if (_handler.Invalid)
-                return BadRequest(_handler.Notifications);
-
+            var result = _handler.Handle(command);
             return result;
         }
 

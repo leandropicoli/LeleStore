@@ -1,12 +1,10 @@
-using System;
 using LeleStore.Shared.Commands;
 
 namespace LeleStore.Domain.StoreContext.Commands.CustomerCommands.Outputs
 {
-    public class CreateCustomerCommandResult : ICommandResult
+    public class CommandResult : ICommandResult
     {
-
-        public CreateCustomerCommandResult(bool success, string message, object data)
+        public CommandResult(bool success, string message, object data)
         {
             Success = success;
             Message = message;

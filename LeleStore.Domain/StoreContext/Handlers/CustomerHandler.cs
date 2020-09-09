@@ -41,13 +41,18 @@ namespace LeleStore.Domain.StoreContext.Handlers
             AddNotifications(customer.Notifications);
 
             if (Invalid)
-                return null;
+                return new CommandResult(false, "The following errors ocurred", Notifications);
 
             _repository.Save(customer);
 
             _emailService.Send(email.Address, "hello@lelestore.com", "Welcome", "Welcome to Lele Store!");
 
-            return new CreateCustomerCommandResult(customer.Id, name.ToString(), email.Address);
+            return new CommandResult(true, "Welcome", new
+            {
+                Id = customer.Id,
+                Name = name.ToString(),
+                Email = email.Address
+            });
         }
 
         public ICommandResult Handle(AddAddressCommand command)
