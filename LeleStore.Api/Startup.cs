@@ -1,3 +1,4 @@
+using LeleStore.Domain.StoreContext.Handlers;
 using LeleStore.Domain.StoreContext.Repositories;
 using LeleStore.Domain.StoreContext.Services;
 using LeleStore.Infra.Repositories;
@@ -22,6 +23,7 @@ namespace LeleStore.Api
             services.AddScoped<LeleDataContext, LeleDataContext>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IEmailService, EmailService>();
+            services.AddTransient<CustomerHandler, CustomerHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
