@@ -4,6 +4,7 @@ namespace LeleStore.Api.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet]
         [Route("")]
         public string Get()
         {
