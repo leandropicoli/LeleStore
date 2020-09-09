@@ -10,16 +10,26 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
+using System.IO;
+using LeleStore.Shared;
 
 namespace LeleStore.Api
 {
     public class Startup
     {
+        public static IConfiguration Configuration { get; set; }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
+
+            Configuration = builder.Build();
+
             services.AddMvc(option => option.EnableEndpointRouting = false);
 
             services.AddResponseCompression();
@@ -39,6 +49,8 @@ namespace LeleStore.Api
                 o.ApiKey = "apikey";
                 o.LogId = new Guid("logId");
             });
+
+            Settings.ConnectionString = $"{Configuration["ConnectionString"]}";
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
