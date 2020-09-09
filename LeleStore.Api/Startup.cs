@@ -1,3 +1,5 @@
+using System;
+using Elmah.Io.AspNetCore;
 using LeleStore.Domain.StoreContext.Handlers;
 using LeleStore.Domain.StoreContext.Repositories;
 using LeleStore.Domain.StoreContext.Services;
@@ -31,6 +33,12 @@ namespace LeleStore.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "LeleStore", Version = "v1" });
             });
+
+            services.AddElmahIo(o =>
+            {
+                o.ApiKey = "apikey";
+                o.LogId = new Guid("logId");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +56,8 @@ namespace LeleStore.Api
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Lele Store V1");
             });
+
+            app.UseElmahIo();
         }
     }
 }
