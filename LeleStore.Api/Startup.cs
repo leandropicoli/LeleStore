@@ -6,7 +6,6 @@ using LeleStore.Infra.StoreContext.DataContexts;
 using LeleStore.Infra.StoreContext.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -19,6 +18,8 @@ namespace LeleStore.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(option => option.EnableEndpointRouting = false);
+
+            services.AddResponseCompression();
 
             services.AddScoped<LeleDataContext, LeleDataContext>();
             services.AddTransient<ICustomerRepository, CustomerRepository>();
@@ -35,6 +36,7 @@ namespace LeleStore.Api
             }
 
             app.UseMvc();
+            app.UseResponseCompression();
         }
     }
 }
